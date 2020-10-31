@@ -1,15 +1,16 @@
 # Pin-Pon
 
 ## Description
-El [tenis de mesa o ping pong](https://es.wikipedia.org/wiki/Tenis_de_mesa) es un juego de mesa que se disputa entre dos jugadores o dos parejas.
-El objetivo en este juego, es conseguir superar o igualar la puntuación en cada nivel.
+The [Table tennis o ping pong](https://es.wikipedia.org/wiki/Tenis_de_mesa)  is a sport in which two or four players hit a lightweight ball.
+The objective in this game, is to be able to overcome or equal the score in each level.
 
 ## MVP (DOM - CANVAS)
-El jugador podrá moverse en 2 direcciones (arriba y abajo), tendrá que acertar una cantidad igual o superior al minimo requerido.
-El juego se acaba cuando haya pasado el tiempo minimo 1 min.
-El jugador ganará siempre que haya superado al contrario
-El jugador perderá si le gana el contrincante.
-Los jugadores pueden acabar en empate.
+The player can move in 2 direction (up/down)
+He must score an amount equal to or greater than the minimum required
+The game will finish when the time is over (1 min)
+The player will win always his amount was greater than the opponent.
+The player loses if the opponent have a greater amount.
+Players can end in a dead heat, if at the end of time they have the same amount of points.
 
 ## Data structure
 1. index.html
@@ -31,7 +32,7 @@ Los jugadores pueden acabar en empate.
 - screenGame / remScreenGame
 - loserScreen / remLoserScreen
 - winScreen / remWinScreen
-- deadHeadlScreen / remDeadHeadScreen
+- deadHeatlScreen / remDeadHeatScreen
 - startGameScreen / endGameScreen
 
 ### 3. Game Constructor
@@ -44,7 +45,7 @@ Los jugadores pueden acabar en empate.
 - ball
 - gameOver
 - gameWon
-- gameDeadHead
+- gameDeadHeat
 - loopCount
 - time limit
 
@@ -56,7 +57,7 @@ Los jugadores pueden acabar en empate.
 - movementBar
 - checkTime
 - win
-- won/over/deadHead
+- won/over/deadHeat
 - print points
 - print time
 
@@ -105,8 +106,8 @@ Los jugadores pueden acabar en empate.
     - Go to loserScreen if the player score is lower than the other player
     - Go to winScreen if the player's's score is higher than the other player
     - Go to deadHeadlScreen if both have the same points
-- loserScreen / winScreen / deadHeadScreen
-    - Shows the message "loser!"/"DeadHead"/"Winner"
+- loserScreen / winScreen / deadHeatScreen
+    - Shows the message "loser!"/"DeadHeat"/"Winner"
     - Show the Restart button and go back to screenGame
 
 ## Tasks
@@ -130,6 +131,9 @@ Los jugadores pueden acabar en empate.
 - Mobility of the bars
 
 ## Links
+
+### Trello
+[Link url](https://trello.com/invite/b/u7Dv7hXg/5bfd385146564da42624c796dfb5ad62/proyecto-1)
 
 ### Figma
 [Link url](https://www.figma.com/file/j64FvDXNzdW7LAD4OX6DMZ/Untitled?node-id=2%3A13)
