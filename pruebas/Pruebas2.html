@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+        .container{
+            padding: 20px 0;
+        }
+    	canvas { background: #eee; display: block; margin: 0 auto;padding: 20px 0; }
+        
+    </style>
+</head>
+<body>
+<main class="container">
+<canvas id="myCanvas" width="600" height="500"></canvas>
+</main>
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+// 1.- posición/movimiento pelota
+    var x = canvas.width/2;
+    var y = canvas.height/2;
+// 2.- valor pequeño de x e y, para que parezca que se mueve (velocidad)
+   //volver a mover la bola 
+   var dx = 2;
+// - hacia abajo + hacia arriba || 0 - se queda en medio al no tener valor, puede servir para hacer lo angulos
+    var dy = -4;
+
+// mantiene el radio del circulo dibujado, se utiliza como base para los calculos
+    var ballRadius = 10;
+
+// pala 1
+var paddleHeight = 175;
+var paddleWidth = 10;
+// pala 2
+var paddleSecondHeight = 175;
+var paddleSecondWidth = 10;
+
+//posición en el eje X en la que empieza a dibujarse
+var paddleY = (canvas.height-paddleHeight)/2;
+var paddleX = (canvas.width-paddleWidth)-20;
+
+var paddleSecondY = (canvas.height-paddleHeight)/2;
+var paddleSecondX = (canvas.width+paddleWidth)/24;
+
+// definicion de variables que guardarán la información de los botones
+var rightPressed = false;
+// se inician con false, porque en un inicio no se pulsa nada
+var leftPressed = false;
+// puntuación
+var score = 0;
+// vidas
+var lives = 3;
+ 
+// event listeners - escuchan las pulsaciones de las teclas
+// cuando se ejecute el evento "keydown" al pulsar/soltar, se ejecuta la función
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(e){
+// arriba
+    if(e.keyCode == 40 || e.keyCode == 83){
+        rightPressed = true;
+    }
+// abajo
+    else if(e.keyCode == 38 || e.keyCode == 87){
+        leftPressed = true;
+    }
+}
+function keyUpHandler(e){
+    if(e.keyCode == 40 || e.keyCode == 83){
+        rightPressed = false;
+    }
+    else if(e.keyCode == 38 || e.keyCode == 87){
+        leftPressed = false;
+    }
+}
+
+ 
+// puntuación
+function drawScore(){
+    ctx.font = "16px Arial";
+    ctx.fillStyle  = "#0095DD";
+    ctx.fillText("Score: "+ score, 8, 20);
+}
+// vidas
+function drawLives(){
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Lives: " + lives, canvas.width-65 ,20);
+}
+
+function drawBall() {
+//empieza a dibujar
+    ctx.beginPath();
+// se sustituye por la posicion que deberia tener
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "green";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawRightPaddle(){
+
+    
+}
+function drawLeftPaddle(){
+    ctx.beginPath();
+    ctx.rect(paddleSecondX, paddleSecondY, paddleSecondWidth, paddleSecondHeight);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fill();
+    ctx.closePath();
+}
+ 
+
+
+function draw() {
+// 3.- borrar rastro antes de pasar al siguiente fotograma, cada 10 milisegundos
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall(); // ejecuta la bola
+    drawRightPaddle(); // ejecuta la barra De
+    drawLeftPaddle(); // ejectuta la barra Iz
+    drawScore(); // Puntuación
+    drawLives(); // vidas
+
+// Rebote en las paredes
+// rebota desde el final/el principio
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius){
+    // entonces el valor + se volverá negativo, y a la inversa
+        dy = -dy;
+    }
+    // izquierda /derecha
+    else if(x + dx > canvas.width-ballRadius|| x + dx < ballRadius) {
+             // si la posición de la bola está dentro de la medida de la barra, esta rebota
+        if (y  > paddleY && y  < paddleY + paddleHeight || y  > paddleSecondY && y  < paddleSecondY + paddleSecondHeight){
+            // va mas rapido cada vez que le da a la barra
+            dy += +dy;
+            // rebota en la barra
+            dx = -dx;
+        }
+        // si no, se reinicia el juego
+        else {
+            lives--; // se resta la 1 de las 3 vidas
+            if(!lives){
+                alert("GAME OVER");
+                document.location.reload();
+            }
+            else { // volver a poner en la posición inicial
+                x = canvas.width/2;
+                y = canvas.height-30;
+                dx = 2;
+                dy = -2;
+                paddleY = (canvas.width-paddleHeight)/2;
+                paddleSecondY = (canvas.width-paddleSecondHeight)/2;
+            }
+        }
+        
+    }
+    
+ 
+    // si se pulsa la flecha se moverá +7/-7 px
+    // canvas.width-paddleWidth = lado derecho
+    if(rightPressed && paddleY < canvas.height-paddleHeight){
+        paddleY += 7;
+    }
+    // paddleX = lado izquierdo
+    else if(leftPressed && paddleY > 0){
+        paddleY -=7;
+    }
+    // canvas.width-paddleWidth = lado derecho
+    if(rightPressed && paddleSecondY < canvas.height-paddleSecondHeight){
+        paddleSecondY += 7;
+    }
+    // paddleX = lado izquierdo
+    else if(leftPressed && paddleSecondY > 0){
+        paddleSecondY -=7;
+    }
+
+  // if(rightPressed && paddleSecondY < canvas.height-paddleSecondHeight){
+  //     paddleSecondY += 7;
+  // }
+  // // paddleX = lado izquierdo
+  // else if(leftPressed && paddleSecondY > 0){
+  //     paddleSecondY -=7;
+  // }
+
+// 1.- actualizar x e y con el nuevo valor, asi la bola se se pintará en cada actualización
+// 2.-de esta forma la bola deja rastro, porque estamos pintando uno nuevo x fotograma
+    x += dx;
+    y += dy;
+
+// 2- la funcion se llama a si misma,  el navegador decide el tiempo
+// se adapta al navegador y a la velocidad de la maquina    
+requestAnimationFrame(draw);
+
+}
+
+// intervalo x fotograma (infinito)
+draw();
+ 
+</script>
+<!-- https://developer.mozilla.org/es/docs/Games/Workflows/Famoso_juego_2D_usando_JavaScript_puro -->
+</body>
+</html>
