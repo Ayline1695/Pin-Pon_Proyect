@@ -32,7 +32,7 @@
   }
   const buildGame = () =>{
     buildDom(`
-    <div>funciona?</div>
+   
     <div id="game-board">
     <canvas id="canvas" width="600" height="500"></canvas>
     </div>
