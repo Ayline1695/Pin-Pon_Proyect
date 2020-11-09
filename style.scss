@@ -10,6 +10,7 @@ body {
             margin: 1rem;
             padding: 1rem;
             text-align: center;
+            height: 500px;
         }
         .game-intro{
             
@@ -26,6 +27,13 @@ body {
                 border-color: rgba(54, 52, 52, 0.548);
             }
         }
+        
+    }
+    .game-board #canvas{
+        background-color: #000000;
+        border: 5px dotted #ffffff;
+        width: 800px;
+        height: 600px;
     }
 
 }
