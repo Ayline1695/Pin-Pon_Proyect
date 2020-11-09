@@ -27,4 +27,11 @@ body .base .game-intro button {
   border-radius: 50%;
   border-color: rgba(54, 52, 52, 0.548);
 }
+
+.game-board #canvas{
+  background-color: #C4C4C4;
+  border: 15px double #ffffff;
+  width: 800px;
+  height: 600px;
+}
 /*# sourceMappingURL=style.css.map */
