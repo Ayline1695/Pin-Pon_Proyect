@@ -35,24 +35,32 @@
   canvasElement.setAttribute("width", width);
   canvasElement.setAttribute("height", height);
 
+  const playerOne = new Player(canvasElement, 3,20);
+  const playerTwo = new Player(canvasElement,3,canvasElement.width-20);
+  function movePlayers(e){
+    if (e.keyCode == 87){
+      playerOne.update(-2);
+    }
+    if (e.keyCode == 83){
+      playerOne.update(2);
+    }
+    if (e.keyCode == 38){
+      playerTwo.update(-2);
+    }
+    if (e.keyCode == 40){
+      playerTwo.update(2);
+    }
+console.log(e.keyCode)
+  }
+ document.addEventListener("keydown",movePlayers);
+
 // enlace a pagina GAME
-  const game = new Game(canvasElement);
+  const game = new Game(canvasElement,playerOne, playerTwo);
 
   // Win / Lose / Equal
   game.gameOverCallback(buildGameOver);
 
   game.start();
-
-  // probar con esto, e ir probando despues con lo hecho
- //const setPlayerDirection = (event) => {
- //  if (event.code === "ArrowUp") {
- //    game.player.setDirection(-1);
- //  } else if (event.code === "ArrowDown") {
- //    game.player.setDirection(1);
- //  }
- //};
-
- //document.addEventListener("keydown", setPlayerDirection);
 
  
 
