@@ -12,7 +12,6 @@ class Ball {
         this.lives = 3;
     }
     draw(){
-        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawBall();
 
         if(this.y + this.dy > this.canvas.height-this.ballRadius || this.y + this.dy < this.ballRadius){
@@ -30,15 +29,15 @@ class Ball {
         this.ctx.closePath();
         
     }
-    colllisionBall(){
-
+    collisionBall(playerOne,playerTwo){
+        // colision arriba y abajo
         if(this.y + this.dy > this.canvas.height-this.ballRadius || this.y + this.dy < this.ballRadius){
                 this.dy = -this.dy;
             }
             // izquierda /derecha
             else if(this.x + this.dx > this.canvas.width-this.ballRadius|| this.x + this.dx < this.ballRadius) {
                     
-                if (this.y  > this.paddleY && this.y  < this.paddleY + this.paddleHeight || this.y  > this.paddleSecondY && this.y  < this.paddleSecondY + this.paddleSecondHeight){
+                if (this.y  > this.playerOne && this.y  < this.playerOne + this.playerOne.paddleX || this.y  > this.playerTwo && this.y  < this.playerTwo - this.playerTwo.paddleX){
                     // va mas rapido cada vez que le da a la barra
                    // this.dy += +this.dy;
                     // rebota en la barra
@@ -47,6 +46,7 @@ class Ball {
                 // si no, se reinicia el juego
                 else {
                     this.lives--; // se resta la 1 de las 3 vidas
+
                     if(!this.lives){
                         alert("GAME OVER");
                         document.location.reload();
@@ -60,15 +60,12 @@ class Ball {
                 }
                 
             }
-            
-         
-      
     }
+
     update(){
-        this.x = this.canvas.width/2;
-        this.y = this.canvas.height/2;
-        this.dx = 2;
-        this.dy = -2;
+        this.x = this.x + this.dx;
+        this.y = this.y + this.dy;
+
     }
 
 }

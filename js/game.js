@@ -1,25 +1,24 @@
 "use strict";
 class Game{
-    constructor(canvas){
+    constructor(canvas, playerOne, playerTwo){
         this.canvas = canvas;
         this.context = this.canvas.getContext("2d");
-        this.player;
-        this.ball = [];
+        this.ball = new Ball(canvas);
         this.isGameOver = false;
         //empate
         this.isDeadHeath = false;
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
+
     }
  
     start(){
         
-        this.player = new Players(this.canvas,2);
         
         // cantidad random de pelotas
         const loop = () => {
-            this.ball = new Ball(this.canvas,1);
-
+           
         //const ball = new Ball(canvas);
-        //this.ball.draw();
         this.drawCanvas();
         this.checkAllCollisions();
         this.updateCanvas();
@@ -36,7 +35,6 @@ class Game{
     }
 
     updateCanvas(){
-        this.player.update();
         this.ball.update();
     }
 
@@ -45,21 +43,25 @@ class Game{
     }
 
     drawCanvas(){
-        this.canvas = document.querySelector("canvas");
+        this.drawLines();
+        this.playerOne.draw();
+        this.playerTwo.draw();
+        this.ball.draw();
+    }
+
+    drawLines(){
         this.context.beginPath();
         this.context.strokeRect(0,0,this.canvas.width/2,this.canvas.height);
         this.context.strokeRect(0,0,this.canvas.width+2,this.canvas.height);
         this.context.fillStyle = "#ffffff";
         this.context.stroke();
         this.context.closePath();
-
-        this.player.draw();
-        this.ball.draw();
     }
 
     checkAllCollisions(){
-        this.player.checkScreen();
-        this.ball.colllisionBall();
+        
+        this.ball.collisionBall(this.playerOne,this.playerTwo);
+
     }
     gameOverCallback(callback) {
         this.onGameOver = callback;
