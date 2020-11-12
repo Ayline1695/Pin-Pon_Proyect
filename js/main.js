@@ -9,9 +9,7 @@
   const buildScreen = () => {
     buildDom(`
     <div class="game-intro">
-    <img src="" alt="" class="logo-img" />
-    <h1>Pin - Pon</h1>
-    <img src="" alt="" class="logo-img" />
+    <img src="./img/logo2.png" alt="" class="logo-img" />
     <br />
     <button id="start-button">Start Game</button>
     <p>Use<br/>UP and DOWN arrow o W and S<br/>to control the paddles!</p>

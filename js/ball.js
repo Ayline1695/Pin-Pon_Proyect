@@ -36,8 +36,8 @@ class Ball {
             }
             // izquierda /derecha
             else if(this.x + this.dx > this.canvas.width-this.ballRadius|| this.x + this.dx < this.ballRadius) {
-                    
-                if (this.y  > this.playerOne && this.y  < this.playerOne + this.playerOne.paddleX || this.y  > this.playerTwo && this.y  < this.playerTwo - this.playerTwo.paddleX){
+
+                if (this.y  > playerOne.y && this.y  < playerOne.y + playerOne.height || this.y  > playerTwo.y && this.y  < playerTwo.y + playerTwo.height){
                     // va mas rapido cada vez que le da a la barra
                    // this.dy += +this.dy;
                     // rebota en la barra

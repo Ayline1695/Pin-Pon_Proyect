@@ -5,10 +5,10 @@ class Player {
     this.ctx = this.canvas.getContext("2d");
 
     // pala
-    this.paddleHeight = 175;
-    this.paddleWidth = 10;
-    this.paddleY = (this.canvas.height - this.paddleHeight) / 2;
-    this.paddleX = positionX;
+    this.height = 175;
+    this.width = 10;
+    this.y = (this.canvas.height - this.height) / 2;
+    this.x = positionX;
 
     this.speed = 7;
     this.score = 0;
@@ -16,8 +16,8 @@ class Player {
   }
 
   update(direction) {
-    this.paddleY = this.paddleY + direction * this.speed;
-    console.log(this.paddleY)
+    this.y = this.y + direction * this.speed;
+    console.log(this.y)
   }
 
   draw() {
@@ -32,10 +32,10 @@ class Player {
   drawPlayer() {
     this.ctx.beginPath();
     this.ctx.rect(
-      this.paddleX,
-      this.paddleY,
-      this.paddleWidth,
-      this.paddleHeight
+      this.x,
+      this.y,
+      this.width,
+      this.height
     );
     this.ctx.fillStyle = "#000000";
     this.ctx.fill();
@@ -60,13 +60,16 @@ class Player {
 
   checkScreen() {
     if (this.y - this.size / 2 <= 0) {
-      this.direction = 1;
+      this.direction = 2;
     } else if (this.y + this.size / 2 >= this.canvas.height) {
-      this.direction = -1;
+      this.direction = -2;
     }
   }
 
-  //checkCollision(imp){
-  //
-  //}
+  checkCollision(){
+    if(this.y > this.canvas.height || this.y  < this.canvas.height == 0){
+        this.y = -this.y;
+    }
+
+  }
 }
