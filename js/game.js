@@ -61,6 +61,8 @@ class Game{
     checkAllCollisions(){
         
         this.ball.collisionBall(this.playerOne,this.playerTwo);
+        this.playerOne.checkCollision();
+        this.playerTwo.checkCollision();
 
     }
     gameOverCallback(callback) {
