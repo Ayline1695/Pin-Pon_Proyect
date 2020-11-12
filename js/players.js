@@ -22,8 +22,10 @@ class Player {
 
   draw() {
     this.drawPlayer();
-    this.drawLives();
-    this.drawScore();
+    this.drawLivesP1();
+    this.drawScoreP1();
+    this.drawLivesP2();
+    this.drawScoreP2();
   }
 
 
@@ -42,17 +44,31 @@ class Player {
     this.ctx.closePath();
   }
   // puntuación
-  drawScore() {
-    this.ctx.font = "22px Arial";
-    this.ctx.fillStyle = "#0095DD";
-    this.ctx.fillText("Score: " + this.score, 20, 40);
-  }
+drawScoreP1() {
+  this.ctx.font = "22px Arial";
+  this.ctx.fillStyle = "#0095DD";
+  this.ctx.fillText("Score: " + this.score, 20, 40);
+}
+
   // vidas
-  drawLives() {
+  drawLivesP1() {
     this.ctx.font = "22px Arial";
     this.ctx.fillStyle = "#0095DD";
-    this.ctx.fillText("Lives: " + this.lives, this.canvas.width - 100, 40);
+    this.ctx.fillText("Lives: " + this.lives, 20, 80);
   }
+    // puntuación
+drawScoreP2() {
+    this.ctx.font = "22px Arial";
+    this.ctx.fillStyle = "#0095DD";
+    this.ctx.fillText("Score: " + this.score, this.canvas.width -100, 80);
+  }
+  
+    // vidas
+    drawLivesP2() {
+      this.ctx.font = "22px Arial";
+      this.ctx.fillStyle = "#0095DD";
+      this.ctx.fillText("Lives: " + this.lives, this.canvas.width - 100, 40);
+    }
 
   setDirection(direction) {
     this.direction = direction;
@@ -67,9 +83,10 @@ class Player {
   }
 
   checkCollision(){
-    if(this.y > this.canvas.height || this.y  < this.canvas.height == 0){
+    if(this.y > this.canvas.height || this.y < 0) {
         this.y = -this.y;
     }
+   
 
   }
 }
