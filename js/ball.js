@@ -21,7 +21,9 @@ class Ball {
         if(this.x + this.dx > this.canvas.width-this.ballRadius || this.x + this.dx < this.ballRadius) {
             this.dx = -this.dx;
         }
-  
+        if(this.y + this.dy > this.canvas.height-this.ballRadius || this.y + this.dy < this.ballRadius) {
+            this.dy = -this.dy;
+        }
         this.x += this.dx;
         this.y += this.dy;
     }
@@ -35,7 +37,7 @@ class Ball {
         
     }
     collisionBall(playerOne,playerTwo){
-       // colision arriba y abajo
+     // colision arriba y abajo
 if(this.y + this.dy > this.canvas.height-this.ballRadius || this.y + this.dy < this.ballRadius){
     this.dy = -this.dy;
 }
@@ -96,7 +98,10 @@ else if(this.x + this.dx > this.canvas.width-this.ballRadius|| this.x + this.dx 
     }
     
 }
+        
+        
     }
+
     checkCollisionEnemy(enemy) {
         const collideRight = this.x + this.dx / 2 > playerOne.x - playerTwo.size / 2;
         const collideLeft = this.x - this.dx / 2 < playerTwo.x + playerTwo.size / 2;
