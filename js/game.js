@@ -51,16 +51,17 @@ class Game{
 
     drawLines(){
         this.context.beginPath();
+        this.context.fillStyle = "rgb(200,0,0)";
         this.context.strokeRect(0,0,this.canvas.width/2,this.canvas.height);
+        this.context.fillStyle = "rgba(0, 0, 200, 0.5)";
         this.context.strokeRect(0,0,this.canvas.width+2,this.canvas.height);
-        this.context.fillStyle = "#ffffff";
         this.context.stroke();
         this.context.closePath();
     }
 
     checkAllCollisions(){
         
-        this.ball.collisionBall(this.playerOne,this.playerTwo);
+        this.ball.collisionBall();
         this.playerOne.checkCollision();
         this.playerTwo.checkCollision();
 

@@ -1,6 +1,6 @@
 class Player {
   constructor(canvas, lives, positionX) {
-    this.size = 100;
+    this.size = 10;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
 
@@ -17,26 +17,19 @@ class Player {
 
   update(direction) {
     this.y = this.y + direction * this.speed;
-    console.log(this.y)
   }
 
   draw() {
     this.drawPlayer();
+    this.checkCollision();
     this.drawLives();
     this.drawScore();
-  }
 
-
-
+}
 
   drawPlayer() {
     this.ctx.beginPath();
-    this.ctx.rect(
-      this.x,
-      this.y,
-      this.width,
-      this.height
-    );
+    this.ctx.rect(this.x,this.y,this.width,this.height);
     this.ctx.fillStyle = "#000000";
     this.ctx.fill();
     this.ctx.closePath();
@@ -67,10 +60,12 @@ drawScore() {
   }
 
   checkCollision(){
-    if(this.y > this.canvas.height || this.y < 0) {
-        this.y = -this.y;
-    }
-   
 
+    if(this.y + this.size /2 <=0 || this.y + this.size /2 >= this.canvas.height) {
+      this.y = -this.y;
+  }
+
+    // this height = alto
+    // this y  = el sobrante (total altura - alto / 2(arriba y abajo))
   }
 }
