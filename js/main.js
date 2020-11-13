@@ -48,12 +48,12 @@
     if (e.keyCode == 40){
       playerTwo.update(2);
     }
-console.log(e.keyCode)
+
   }
  document.addEventListener("keydown",movePlayers);
 
 // enlace a pagina GAME
-  const game = new Game(canvasElement,playerOne, playerTwo);
+  const game = new Game(canvasElement, playerOne, playerTwo);
 
   // Win / Lose / Equal
   game.gameOverCallback(buildGameOver);

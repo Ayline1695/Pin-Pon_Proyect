@@ -1,6 +1,6 @@
 class Player {
   constructor(canvas, lives, positionX) {
-    this.size = 40;
+    this.size = 100;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
 
@@ -22,10 +22,8 @@ class Player {
 
   draw() {
     this.drawPlayer();
-    this.drawLivesP1();
-    this.drawScoreP1();
-    this.drawLivesP2();
-    this.drawScoreP2();
+    this.drawLives();
+    this.drawScore();
   }
 
 
@@ -44,31 +42,17 @@ class Player {
     this.ctx.closePath();
   }
   // puntuación
-drawScoreP1() {
+drawScore() {
   this.ctx.font = "22px Arial";
   this.ctx.fillStyle = "#0095DD";
   this.ctx.fillText("Score: " + this.score, 20, 40);
 }
-
   // vidas
-  drawLivesP1() {
+  drawLives() {
     this.ctx.font = "22px Arial";
     this.ctx.fillStyle = "#0095DD";
     this.ctx.fillText("Lives: " + this.lives, 20, 80);
   }
-    // puntuación
-drawScoreP2() {
-    this.ctx.font = "22px Arial";
-    this.ctx.fillStyle = "#0095DD";
-    this.ctx.fillText("Score: " + this.score, this.canvas.width -100, 80);
-  }
-  
-    // vidas
-    drawLivesP2() {
-      this.ctx.font = "22px Arial";
-      this.ctx.fillStyle = "#0095DD";
-      this.ctx.fillText("Lives: " + this.lives, this.canvas.width - 100, 40);
-    }
 
   setDirection(direction) {
     this.direction = direction;
