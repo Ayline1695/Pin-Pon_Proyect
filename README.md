@@ -1,4 +1,4 @@
-# Pin-Pon
+# Ping-Pong
 
 ## Description
 The [Table tennis o ping pong](https://es.wikipedia.org/wiki/Tenis_de_mesa)  is a sport in which two or four players hit a lightweight ball.
