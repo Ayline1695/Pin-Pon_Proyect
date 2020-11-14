@@ -3,15 +3,15 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 
-body .base {
-  background-color: #70c6d1;
-  padding: 20px;
-}
-
 body .base div {
   margin: 1rem;
   padding: 1rem;
   text-align: center;
+}
+
+body .game-intro {
+  background-color: #70c6d1;
+  padding: 20px;
 }
 
 body .base .game-intro p {
@@ -29,7 +29,7 @@ body .base .game-intro button {
 }
 
 .game-board #canvas{
-  background-color: #C4C4C4;
+  background-color:  #70c6d1;
   border: 15px double #ffffff;
   width: 800px;
   height: 600px;

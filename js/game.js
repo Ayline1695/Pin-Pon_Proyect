@@ -9,7 +9,6 @@ class Game{
         this.isDeadHeath = false;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-
     }
  
     start(){
@@ -44,6 +43,7 @@ class Game{
 
     drawCanvas(){
         this.drawLines();
+        this.drawScoreLives();
         this.playerOne.draw();
         this.playerTwo.draw();
         this.ball.draw();
@@ -51,23 +51,48 @@ class Game{
 
     drawLines(){
         this.context.beginPath();
-        this.context.fillStyle = "rgb(200,0,0)";
+        this.context.strokeStyle = "#ffffff";
         this.context.strokeRect(0,0,this.canvas.width/2,this.canvas.height);
-        this.context.fillStyle = "rgba(0, 0, 200, 0.5)";
         this.context.strokeRect(0,0,this.canvas.width+2,this.canvas.height);
         this.context.stroke();
         this.context.closePath();
     }
 
+  // puntuación
+  drawScoreLives() {
+    this.context.beginPath();
+    this.context.font = "24px Helvetica";
+    this.context.fillText("Score: " + this.playerOne.score + " / " + this.playerTwo.score + " Lives: " + this.playerOne.lives + " / " + this.playerTwo.lives, this.canvas.width/2 - 125, 40);
+    this.context.fillStyle = "#ffffff";
+    this.context.closePath();
+  }
+
+  //  vidas
+  //  drawLives() {
+  //    this.context.font = "22px Arial";
+  //    this.context.fillStyle = "#ffffff";
+  //    this.context.fillText("Lives: " + this.playerOne.lives + "/" + this.playerTwo.lives, this.canvas.width/2, 80);
+  //  }
+
     checkAllCollisions(){
         
-        this.ball.collisionBall();
+        this.ball.collisionBall(this.playerOne,this.playerTwo);
         this.playerOne.checkCollision();
         this.playerTwo.checkCollision();
 
     }
     gameOverCallback(callback) {
-        this.onGameOver = callback;
+                    
+        if(!this.playerTwo.lives || !this.playerTwo.lives){
+            this.onGameOver = callback;
+        }
+        else { // volver a poner en la posición inicial
+            this.x = this.canvas.width/2;
+            this.y = this.canvas.height/2;
+            this.dx = 2;
+            this.dy = +2;
+        }
+        
     }
    
 }

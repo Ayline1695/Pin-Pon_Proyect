@@ -26,13 +26,27 @@ class Ball {
         this.ctx.closePath();
         
     }
-    collisionBall(){
-        if(this.x + this.dx > this.canvas.width-this.ballRadius || this.x + this.dx < this.ballRadius) {
-            this.dx = -this.dx;
-        }
-        if(this.y + this.dy > this.canvas.height-this.ballRadius || this.y + this.dy < this.ballRadius) {
+    collisionBall(playerOne,playerTwo){
+        
+        if(this.y + this.dy > this.canvas.height-this.ballRadius || this.y + this.dy < this.ballRadius){
             this.dy = -this.dy;
         }
+        else if(this.x + this.dx > this.canvas.width-this.ballRadius) {
+            if(this.y + this.dy >= playerOne.y + playerOne.size) {this.dx = -this.dx;}
+            else{
+            playerOne.lives--;
+            playerTwo.score++;
+        }
+        
+        }
+        else if (this.x + this.dx < this.ballRadius) {
+            if (this.y + this.dy <= playerTwo.y + playerTwo.size){this.dx = -this.dx;}
+        
+            else{
+            playerTwo.lives--;
+            playerOne.score++;
+        }
+    }
     }
 
 

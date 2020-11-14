@@ -27,7 +27,6 @@
 
   const width = document.querySelector(".game-board").offsetWidth;
   const height = document.querySelector(".game-board").offsetHeight;
-
   const canvasElement = document.querySelector("#canvas");
 
   canvasElement.setAttribute("width", width);
@@ -35,6 +34,7 @@
 
   const playerOne = new Player(canvasElement, 3,20);
   const playerTwo = new Player(canvasElement,3,canvasElement.width-20);
+
   function movePlayers(e){
     if (e.keyCode == 87){
       playerOne.update(-2);
@@ -65,12 +65,10 @@
 
   const buildGameOver = () =>{
     buildDom(`<div class="game-intro">
-    <p>Loser!</p>
-    <p class="score"></p>
-    <img src="" alt="Loser" class="logo-img" />
+    <p>GAME OVER</p>
+    <img src="./img/logo2.png" alt="Loser" class="logo-img" />
     <br />
     <button class="restart">Restart</button>
-    
   </div>`);
 
     const restartButton = document.querySelector(".restart");

@@ -22,8 +22,8 @@ class Player {
   draw() {
     this.drawPlayer();
     this.checkCollision();
-    this.drawLives();
-    this.drawScore();
+  //  this.drawLives();
+  //  this.drawScore();
 
 }
 
@@ -37,13 +37,13 @@ class Player {
   // puntuación
 drawScore() {
   this.ctx.font = "22px Arial";
-  this.ctx.fillStyle = "#0095DD";
+  this.ctx.fillStyle = "#ffffff";
   this.ctx.fillText("Score: " + this.score, 20, 40);
 }
   // vidas
   drawLives() {
     this.ctx.font = "22px Arial";
-    this.ctx.fillStyle = "#0095DD";
+    this.ctx.fillStyle = "#ffffff";
     this.ctx.fillText("Lives: " + this.lives, 20, 80);
   }
 
@@ -61,11 +61,14 @@ drawScore() {
 
   checkCollision(){
 
-    if(this.y + this.size /2 <=0 || this.y + this.size /2 >= this.canvas.height) {
+    if(this.y + this.size / 2 <= 0) {
       this.y = -this.y;
+      console.log("arriba");
+  }
+  if (this.y + this.size / 2 >= this.canvas.height - this.height){
+    this.y = this.y -2
+    console.log("abajo")
   }
 
-    // this height = alto
-    // this y  = el sobrante (total altura - alto / 2(arriba y abajo))
   }
 }
